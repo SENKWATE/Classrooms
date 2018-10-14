@@ -10,7 +10,59 @@
     <p class="card-text" style="color: 000034;">{{classroom.year}}</p>
     <a href="{% url 'classroom-update' classroom.id %}" class="btn" style="background-color: #000034; color: white;">Update</a>
     <a href="{% url 'classroom-delete' classroom.id %}" class="btn" style="background-color: #FFA500; color: #000034;">Delete</a>
+    <a href="{% url 'student-create' classroom.id %}" class="btn" style="background-color: green; color: white;">Add Student</a>
   </div>
 </div>
 
+<br>
+<div class="card-header  text-center" style="background-color: #e3f2fd; color: 000034;">
+     Students
+  </div>
+<div class="row">
+  {% for student in students %}
+<div class="col-sm-4">
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title"><strong>Name: </strong>{{student.name}}</h5>
+      <p class="card-text"><strong>Birth Date:</strong> {{student.date_of_birth}}</p>
+      <p class="card-text"><strong>Gender:</strong> {{student.gender}}</p>
+      <p class="card-text"><strong>Exam Grade:</strong> {{student.exam_grade}}</p>
+      <a href="{%url 'student-update' student.id %}" class="btn" style="background-color: #e3f2fd; color: black;">Update</a>
+      <a href="{%url 'student-delete' student.id%}" class="btn" style="background-color: #e3f2fd; color: black;">Delete</a>
+    </div>
+  </div>
+</div>
+  {% endfor %}
+</div>
 {% endblock content %}
+
+
+<!-- <tbody>
+	{% for i in students %}
+	<tr>
+		<td>{{student.name}}</td>
+		<td>{{student.gender}}</td>
+		<td>{{student.date_of_birth}}</td>
+		<td>{{student.exam_grade}}</td>
+	</tr>
+  {% endfor %}
+
+</tbody> -->
+
+
+<!-- <div class="card text-center">
+  <div class="card-header" style="background-color: #e3f2fd; color: 000034;">
+     Students
+  </div>
+  <div class="card-body">
+    {% for student in students %}
+      <li class="row">
+        <p>{{student.name}} - {{student.date_of_birth}} - {{student.exam_grade}}
+          {% if  request.user == classroom.teacher %}
+          <a href="{% url 'student-update' student.id %}" class="btn mx-3" style="background-color: #FFA500; color: #000034;">Update</a><a href="{% url 'student-delete' student.id %}" class="btn mx-2" style="background-color: #FFA500; color: #000034;">Delete</a>
+          {% endif %}
+        </p>
+      </li>
+    {% endfor %}
+  </div>
+</div> -->

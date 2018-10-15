@@ -21,7 +21,7 @@ urlpatterns = [
     path('classrooms/<int:student_id>/student/update/', views.student_update, name='student-update'),
     path('classrooms/<int:student_id>/student/delete/', views.student_delete, name='student-delete'),
 
-    path('no-access/',views.no_access ,name='no-access'),
+    path('api/',views.test_api ,name='api'),
 ]
 
 if settings.DEBUG:

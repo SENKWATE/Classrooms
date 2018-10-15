@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row">
+  {% for event in response %}
+<div class="col-sm-4">
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title text-center">{{event.actor.login}}</h5>
+      <img src="{{event.actor.avatar_url}}" width=300 height=300>
+      <p class="card-text"><strong>Repository:</strong> {{event.repo.url}}</p>
+      <p class="card-text"><strong>Created:</strong> {{event.created_at}}</p>
+    </div>
+  </div>
+</div>
+
+  {% endfor %}
+</div>
+
+{% endblock content %}

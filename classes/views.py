@@ -3,7 +3,8 @@ from django.contrib import messages
 from .models import Classroom, Student
 from .forms import ClassroomForm,  SignupForm, SigninForm, StudentForm
 from django.contrib.auth import login, authenticate, logout
-
+from django.http import JsonResponse
+import requests
 
 def classroom_list(request):
     classrooms = Classroom.objects.all()
@@ -177,6 +178,15 @@ def student_delete(request, student_id):
     Student.objects.get(id=student_id).delete()
     messages.success(request, "Successfully Deleted!")
     return redirect("classroom-detail", classroom_id=classroom)
+
+def test_api(request):
+    url = "https://api.github.com/repos/joinCODED/task_13/events"
+    response = requests.get(url)
+    context = {
+        "response":response.json(),
+    }
+    return render(request,'api.html',context)
+    # return JsonResponse(response.json(),safe=False)
 
     # if request.user.is_anonymous:
     #     return redirect('signin')

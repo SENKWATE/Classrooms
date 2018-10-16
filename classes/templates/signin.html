@@ -7,14 +7,17 @@
     
 <br>
 <div class="card">
-  <h5 class="card-header">Signin</h5>
+  <h5 class="card-header">SigningIn</h5>
   <div class="card-body">
     <p class="card-text">
         <form action="{% url 'signin' %}" method="POST">
             {% csrf_token %}
             {{form|crispy}}
-            <input type="submit" value="Signin" class="btn btn-outline-primary">
+            <input type="submit" value="SignIn" class="btn btn-outline-primary">
+            <a href="{% url 'google_login' %}" class="btn btn-success">SignIn with Google <i class="fab fa-google"></i></a>
+            <a href="{% url 'github_login' %}" class="btn btn-dark">SignIn with GitHub <i class="fab fa-github"></i></a>            
         </form>
+        
     </p>
   </div>
 </div>

@@ -8,9 +8,11 @@
   <div class="card-body">
     <h5 class="card-title" style="color: 000034;">{{classroom.name}} {{classroom.subject}}</h5>
     <p class="card-text" style="color: 000034;">{{classroom.year}}</p>
+    {% if request.user == classroom.teacher %} 
     <a href="{% url 'classroom-update' classroom.id %}" class="btn" style="background-color: #000034; color: white;">Update</a>
     <a href="{% url 'classroom-delete' classroom.id %}" class="btn" style="background-color: #FFA500; color: #000034;">Delete</a>
     <a href="{% url 'student-create' classroom.id %}" class="btn" style="background-color: green; color: white;">Add Student</a>
+    {% endif %}
   </div>
 </div>
 
@@ -27,8 +29,10 @@
       <p class="card-text"><strong>Birth Date:</strong> {{student.date_of_birth}}</p>
       <p class="card-text"><strong>Gender:</strong> {{student.gender}}</p>
       <p class="card-text"><strong>Exam Grade:</strong> {{student.exam_grade}}</p>
+      {% if request.user == classroom.teacher %} 
       <a href="{%url 'student-update' student.id %}" class="btn" style="background-color: #e3f2fd; color: black;">Update</a>
       <a href="{%url 'student-delete' student.id%}" class="btn" style="background-color: #e3f2fd; color: black;">Delete</a>
+      {% endif %}
     </div>
   </div>
 </div>

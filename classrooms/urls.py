@@ -1,12 +1,15 @@
 
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from classes import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+
+    path('accounts/', include('allauth.urls')),
+
     path('classrooms/', views.classroom_list, name='classroom-list'),
     path('classrooms/<int:classroom_id>/', views.classroom_detail, name='classroom-detail'),
 
@@ -21,7 +24,9 @@ urlpatterns = [
     path('classrooms/<int:student_id>/student/update/', views.student_update, name='student-update'),
     path('classrooms/<int:student_id>/student/delete/', views.student_delete, name='student-delete'),
 
+    path('noaccess/',views.no_access ,name='no-access'),
     path('api/',views.test_api ,name='api'),
+
 ]
 
 if settings.DEBUG:
